@@ -1,9 +1,16 @@
 .calculator {
-    width: 90vw;
-    max-width: 400px;
-    min-height: 400px;
+  width: 90vw;
+  max-width: 400px;
+  min-height: 400px;
 }
-.screen{
-    background-color: #6E6E6C;
-    height: 80px;
+.screen {
+  background-color: #6e6e6c;
+  height: 80px;
+}
+.btns {
+  font-size: 20px;
+  background-color: #bdbdba;
+  border: 1px solid black;
+  height: 36px;
+  width: 36px;
 }
