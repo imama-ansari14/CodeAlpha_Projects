@@ -39,3 +39,115 @@ class Calculator {
                 }
             });
         });
+// Keyboard support
+        document.addEventListener('keydown', (e) => {
+            this.handleKeyboardInput(e);
+        });
+    }
+
+    addButtonPressEffect(button) {
+        button.style.transform = 'scale(0.95)';
+        button.style.transition = 'transform 0.1s ease';
+        
+        setTimeout(() => {
+            button.style.transform = 'scale(1)';
+        }, 100);
+    }
+
+    inputNumber(number) {
+        if (this.waitingForOperand || this.shouldResetDisplay) {
+            this.currentInput = number;
+            this.waitingForOperand = false;
+            this.shouldResetDisplay = false;
+        } else {
+            this.currentInput = this.currentInput === '0' ? number : this.currentInput + number;
+        }
+        this.updateDisplay();
+    }
+
+    inputOperator(nextOperator) {
+        const inputValue = parseFloat(this.currentInput);
+
+        if (this.previousInput === '') {
+            this.previousInput = inputValue;
+        } else if (this.operator) {
+            const currentValue = this.previousInput || 0;
+            const newValue = this.performCalculation(currentValue, inputValue, this.operator);
+
+            this.currentInput = String(newValue);
+            this.previousInput = newValue;
+            this.updateDisplay();
+        }
+
+        this.waitingForOperand = true;
+        this.operator = nextOperator;
+    }
+
+    inputDecimal() {
+        if (this.waitingForOperand) {
+            this.currentInput = '0.';
+            this.waitingForOperand = false;
+        } else if (this.currentInput.indexOf('.') === -1) {
+            this.currentInput += '.';
+        }
+        this.updateDisplay();
+    }
+
+    clear() {
+        this.currentInput = '0';
+        this.previousInput = '';
+        this.operator = null;
+        this.waitingForOperand = false;
+        this.shouldResetDisplay = false;
+        this.display.classList.remove('error-animation'); 
+        this.updateDisplay();
+    }
+
+    calculate() {
+        const inputValue = parseFloat(this.currentInput);
+
+        if (this.previousInput !== '' && this.operator) {
+            const currentValue = this.previousInput || 0;
+            const newValue = this.performCalculation(currentValue, inputValue, this.operator);
+
+            this.currentInput = String(newValue);
+            this.previousInput = '';
+            this.operator = null;
+            this.waitingForOperand = false;
+            this.shouldResetDisplay = true;
+            this.updateDisplay();
+        }
+    }
+
+    performCalculation(firstOperand, secondOperand, operator) {
+        let result;
+
+        switch (operator) {
+            case '+':
+                result = firstOperand + secondOperand;
+                break;
+            case '-':
+                result = firstOperand - secondOperand;
+                break;
+            case '*':
+                result = firstOperand * secondOperand;
+                break;
+            case '/':
+                if (secondOperand === 0) {
+                    this.showError('Error');
+                    return firstOperand;
+                }
+                result = firstOperand / secondOperand;
+                break;
+            default:
+                return secondOperand;
+        }
+
+        // Round to avoid floating point precision issues
+        return Math.round((result + Number.EPSILON) * 100000000) / 100000000;
+    }
+
+    updateDisplay() {
+        let displayValue = this.currentInput;
+
+        
