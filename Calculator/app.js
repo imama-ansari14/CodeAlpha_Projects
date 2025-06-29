@@ -7,25 +7,22 @@ class Calculator {
     this.waitingForOperand = false;
     this.shouldResetDisplay = false;
 
-    // Initialize theme based on a data attribute or default to light
     document.body.setAttribute("data-theme", "light");
     this.initializeEventListeners();
     this.updateDisplay();
   }
 
   initializeEventListeners() {
-    // Get all buttons
     const buttons = document.querySelectorAll(".btns");
 
     buttons.forEach((button) => {
       button.addEventListener("click", (e) => {
-        this.addButtonPressEffect(button); // Pass the button directly
+        this.addButtonPressEffect(button);
         const buttonText = e.target.textContent.trim();
         const isThemeButton = button.querySelector(
           ".bi-moon-fill, .bi-sun-fill"
         );
 
-        // Handle different button types
         if (buttonText >= "0" && buttonText <= "9") {
           this.inputNumber(buttonText);
         } else if (buttonText === ".") {
@@ -41,7 +38,7 @@ class Calculator {
         }
       });
     });
-    // Keyboard support
+
     document.addEventListener("keydown", (e) => {
       this.handleKeyboardInput(e);
     });
@@ -153,25 +150,19 @@ class Calculator {
       default:
         return secondOperand;
     }
-
-    // Round to avoid floating point precision issues
     return Math.round((result + Number.EPSILON) * 100000000) / 100000000;
   }
 
   updateDisplay() {
     let displayValue = this.currentInput;
 
-    // Format large numbers
     if (Math.abs(parseFloat(displayValue)) > 999999999) {
       displayValue = parseFloat(displayValue).toExponential(6);
     }
 
-    // Limit decimal places for display
     if (displayValue.includes(".") && displayValue.length > 10) {
       displayValue = parseFloat(displayValue).toFixed(8);
     }
-
-    // Truncate if still too long
     if (displayValue.length > 12) {
       displayValue = displayValue.substring(0, 12);
     }
@@ -182,12 +173,12 @@ class Calculator {
   showError(message) {
     this.display.textContent = message;
     this.display.style.color = "#ff4444";
-    this.display.classList.add("error-animation"); // Add animation class
+    this.display.classList.add("error-animation");
 
     setTimeout(() => {
       this.clear();
       this.display.style.color = "";
-      this.display.classList.remove("error-animation"); // Remove animation class
+      this.display.classList.remove("error-animation");
     }, 1500);
   }
 
@@ -196,7 +187,7 @@ class Calculator {
     const calculator = document.querySelector(".calculator");
     const screen = document.querySelector(".screen");
     const buttons = document.querySelectorAll(".btns");
-    const themeButtonIcon = document.querySelector(".btns .bi"); // Get the icon within the theme button
+    const themeButtonIcon = document.querySelector(".btns .bi");
 
     const currentTheme = body.getAttribute("data-theme");
 
@@ -238,9 +229,51 @@ class Calculator {
   }
 
   handleKeyboardInput(e) {
-    // Numbers
     if (e.key >= "0" && e.key <= "9") {
       this.inputNumber(e.key);
     }
 
-    
+    switch (e.key) {
+      case "+":
+        this.inputOperator("+");
+        break;
+      case "-":
+        this.inputOperator("-");
+        break;
+      case "*":
+        this.inputOperator("*");
+        break;
+      case "/":
+        e.preventDefault();
+        this.inputOperator("/");
+        break;
+      case "=":
+      case "Enter":
+        this.calculate();
+        break;
+      case ".":
+        this.inputDecimal();
+        break;
+      case "Escape":
+      case "c":
+      case "C":
+        this.clear();
+        break;
+      case "Backspace":
+        this.backspace();
+        break;
+    }
+  }
+
+  backspace() {
+    if (this.currentInput.length > 1) {
+      this.currentInput = this.currentInput.slice(0, -1);
+    } else {
+      this.currentInput = "0";
+    }
+    this.updateDisplay();
+  }
+}
+document.addEventListener("DOMContentLoaded", () => {
+  new Calculator();
+});
