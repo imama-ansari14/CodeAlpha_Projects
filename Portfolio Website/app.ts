@@ -1,5 +1,3 @@
-// app.ts
-
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Smooth Scrolling for Navigation Links
     document.querySelectorAll('a.nav-link[href^="#"]').forEach(anchor => {
