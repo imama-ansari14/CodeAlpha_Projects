@@ -35,6 +35,9 @@ body {
 }
 
 /* Hero section */
+.heading{
+  color: var(--primary-purple);
+}
 #home {
   background: url(images/hero-sec.jpg) no-repeat center center/cover;
   min-height: 100vh;
@@ -69,6 +72,50 @@ body {
   font-size: 1.5rem;
   margin-bottom: 2rem;
 }
+.hero-subtitle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 5rem;
+  font-weight: bold;
+  padding: 0px 0;
+}
+
+.hero-subtitle span {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.5s forwards;
+}
+
+/* Add delay to each word */
+.hero-subtitle span:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.hero-subtitle span:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.hero-subtitle span:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.hero-subtitle span:nth-child(4) {
+  animation-delay: 0.8s;
+}
+.hero-subtitle span:nth-child(5) {
+  animation-delay: 1s;
+}
+.hero-subtitle span:nth-child(6) {
+  animation-delay: 1.2s;
+}
+.hero-subtitle span:nth-child(7) {
+  animation-delay: 1.4s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 .custom-btn {
   background-color: var(--primary-purple);
@@ -78,29 +125,30 @@ body {
 }
 
 .custom-btn:hover {
-  background-color: darken(var(--primary-purple), 10%);
   background-color: #6a0dad;
   border-color: #6a0dad;
   transform: translateY(-2px);
 }
+
 .hero-content {
   max-width: 800px;
 }
 .scroll-down {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: bounce 2s infinite;
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
 }
 /*ANIMATION ON ARROW  */
 @keyframes bounce {
-    0%, 100% {
-        transform: translateX(-50%) translateY(0);
-    }
-    50% {
-        transform: translateX(-50%) translateY(-10px);
-    }
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
 }
 /* Section styling */
 section {
@@ -171,6 +219,3 @@ section {
 footer {
   border-top: 1px solid var(--primary-purple);
 }
-
-/* .....................  */
-
