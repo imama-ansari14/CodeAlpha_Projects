@@ -38,7 +38,7 @@ A clean, modern, and fully responsive **portfolio website** that highlights my s
 
 ---
 
-### 2️⃣ Calculator
+### 2️⃣ Calculator — [Live Demo 🔗](https://glowmode-calculator.netlify.app/)
 
 A simple, user-friendly calculator built using pure HTML, CSS, and JavaScript.
 
@@ -73,6 +73,15 @@ Hi! I’m **Imama Ansari**, a passionate Frontend Web Developer who loves turnin
 ## 📝 License
 
 This project is open-source and free to use for learning and development purposes. If you use any of the code, kindly credit the author. 🌟
+
+---
+
+## ⭐️ Thank you for visiting **My Projects**! 
+  
+i hope you like My Projects (My portfolio and Calculator).  
+If you find it useful or inspiring, feel free to ⭐️ the repository and share your feedback.  
+
+<h2 align="center" > Happy Coding! 🚀✨</h2>
 
 ---
 
