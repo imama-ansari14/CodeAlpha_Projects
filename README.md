@@ -57,3 +57,23 @@ A simple, user-friendly calculator built using pure HTML, CSS, and JavaScript.
 </p>
 
 ---
+
+
+## 💡 About the Developer
+
+Hi! I’m **Imama Ansari**, a passionate Frontend Web Developer who loves turning designs into reality. I enjoy learning and creating functional, responsive web applications.
+
+📫 **Contact Me:**
+- 💼 [LinkedIn](https://www.linkedin.com/in/imama-ansari-5a604b337)
+- 🖥️ [GitHub](https://github.com/imama-ansari14)
+- 📩 Email:ansariimama@yahoo.com
+
+---
+
+## 📝 License
+
+This project is open-source and free to use for learning and development purposes. If you use any of the code, kindly credit the author. 🌟
+
+---
+
+
